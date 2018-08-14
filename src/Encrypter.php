@@ -64,10 +64,13 @@ class Encrypter
             'devID' => $this->config[HualalaOptions::DEVELOPER_ID],
             'merchantsID' => $this->config[HualalaOptions::MERCHANT_ID],
             'groupID' => $this->config[HualalaOptions::GROUP_ID],
-            'shopID' => $this->config[HualalaOptions::SHOP_ID],
             'version' => 1.0,
             'devPwd' => $this->config[HualalaOptions::DEVELOPER_PASSWORD],
         ];
+
+        if ($this->config->has(HualalaOptions::SHOP_ID)) {
+            $base['shopID'] = $this->config[HualalaOptions::SHOP_ID];
+        }
 
         $base = array_merge($base, $attributes);
         $base['signature'] = $maker($base);
