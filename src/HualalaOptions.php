@@ -4,6 +4,7 @@ namespace Cblink\Hualala;
 
 class HualalaOptions
 {
+    const DEBUG = 'debug';
     const DEVELOPER_ID = 'dev_id';
     const DEVELOPER_PASSWORD = 'dev_pwd';
     const MERCHANT_ID = 'mch_id';
