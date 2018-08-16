@@ -23,11 +23,11 @@ class Encrypter
         $json = json_encode($attributes);
         $key = $this->config[HualalaOptions::AES_KEY];
 
-        if (extension_loaded('mcrypt')) {
-            $encrypted = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $json, MCRYPT_MODE_CBC, $key);
-        } else {
-            $encrypted = openssl_encrypt($json, 'AES-128-CBC', $key, OPENSSL_RAW_DATA, $key);
-        }
+        // if (extension_loaded('mcrypt')) {
+        //     $encrypted = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $json, MCRYPT_MODE_CBC, $key);
+        // } else {
+        $encrypted = openssl_encrypt($json, 'AES-128-CBC', $key, OPENSSL_RAW_DATA, $key);
+        // }
 
         return base64_encode($encrypted);
     }
