@@ -22,7 +22,7 @@ class Hualala extends Foundation
     public function request($endpoint, $payload = [])
     {
         $baseUri = $this['config']['debug'] ? 'https://dohko-open-api.hualala.com' : 'https://www-openapi.hualala.com';
-        
+
         $client = new Client([
             'base_uri' => $baseUri,
         ]);
@@ -33,6 +33,16 @@ class Hualala extends Foundation
             ]),
         ]);
 
-        return json_decode((string) $response->getBody(), JSON_OBJECT_AS_ARRAY);
+        $result = json_decode((string) $response->getBody(), JSON_OBJECT_AS_ARRAY);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new Exception('Invalid response.');
+        }
+
+        if ($result['code'] == '000') {
+            return $result;
+        }
+
+        throw new Exception($result['message']);
     }
 }
