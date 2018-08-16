@@ -21,8 +21,10 @@ class Hualala extends Foundation
      */
     public function request($endpoint, $payload = [])
     {
+        $baseUri = $this['config']['debug'] ? 'https://dohko-open-api.hualala.com' : 'https://www-openapi.hualala.com';
+        
         $client = new Client([
-            'base_uri' => 'https://dohko-open-api.hualala.com',
+            'base_uri' => $baseUri,
         ]);
 
         $response = $client->post($endpoint, [
