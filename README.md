@@ -7,7 +7,7 @@ use Cblink\Hualala\Hualala;
 use Cblink\Hualala\HualalaOptions;
 
 return new Hualala([
-    'debug' => true,
+    HualalaOptions::DEBUG => true,
     HualalaOptions::DEVELOPER_ID => 123,
     HualalaOptions::DEVELOPER_PASSWORD => 'xxx',
     HualalaOptions::MERCHANT_ID => 456,
