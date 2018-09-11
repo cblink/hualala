@@ -28,6 +28,17 @@ class Encrypter
         return base64_encode($encrypted);
     }
 
+    public function decrypt($value)
+    {
+        $value = base64_decode($value);
+
+        $key = $this->config[HualalaOptions::AES_KEY];
+
+        $result = openssl_decrypt($value, 'AES-128-CBC', $key, OPENSSL_NO_PADDING, $key);
+
+        return json_decode(trim($result, "\x00"), true);
+    }
+
     public function concater($data) {
         $t = '';
         foreach ($data as $key => $value) {
