@@ -71,7 +71,11 @@ class Encrypter
         $reset = [];
         foreach ($array as $key => $value) {
             if (is_array($value)) {
-                $reset = array_merge($reset, $this->resetArray($value));
+                if (is_array($value[0] ?? null)) {
+                    $reset = array_merge($reset, $value[0]);
+                } else  {
+                    $reset = array_merge($reset, $this->resetArray($value));
+                }
             } else {
                 $reset[$key] = $value;
             }
